@@ -26,23 +26,23 @@ I first compared Rob's template with the template from Debian lxc 0.7.5-5. See d
 * Added reporting of hostname to dhcp server
 * Different way to set locale (same as upstream) (this uses locale-gen $LANG, which doesn't work on Wheezy (anymore?))
 * Different pointless services to disable
- * Doesn't remove checkroot, umountroot, module-init-tools
+  * Doesn't remove checkroot, umountroot, module-init-tools
 * Changed random password for root to "root"
 * Replacing the deprecated dhcp3-client package with isc-dhcp-client (same as upstream)
 * Change arch-determination to simpler if structure without using dpkg or udpkg
 * Added support for arch=armv5tel (results in arch=armel)
 * Changed container configuration
- * Restructured it (all networking setting together)
- * Removed #lxc.console = /var/log/lxc/$name.console (was already commented out)
- * Removed lxc.cap.drop = sys_admin
- * Removed #lxc.cgroup.devices.allow = a (was already commented out)
- * Removed limits
- * Removed lxc.mount.entry for shared folder
- * Changed network settings
-   * Removed lxc.network.mtu = 1500
-   * Removed lxc.network.name = eth0
-   * Removed lxc.network.veth.pair = veth-$name
-   * Added lxc.network.ipv4 = 0.0.0.0/24
-   * Replaced hard-coded mac address with random generated mac-address using new hex() function
+  * Restructured it (all networking setting together)
+  * Removed #lxc.console = /var/log/lxc/$name.console (was already commented out)
+  * Removed lxc.cap.drop = sys_admin
+  * Removed #lxc.cgroup.devices.allow = a (was already commented out)
+  * Removed limits
+  * Removed lxc.mount.entry for shared folder
+  * Changed network settings
+    * Removed lxc.network.mtu = 1500
+    * Removed lxc.network.name = eth0
+    * Removed lxc.network.veth.pair = veth-$name
+    * Added lxc.network.ipv4 = 0.0.0.0/24
+    * Replaced hard-coded mac address with random generated mac-address using new hex() function
 * Added missing $name to copy_configuration() function call (same as upstream)
 
