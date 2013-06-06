@@ -6,7 +6,7 @@ Since the lxc template for Debian in Debian Wheezy is broken (because it relies 
 Debian bug http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=680469 is the most relevant bug for this issue, though there are several other Debian bug's referenced on the LXC mailing list which actually don't solve much. This bug and Rob's template are referenced in several places, for example * Discussion: http://lists.alioth.debian.org/pipermail/freedombox-discuss/2013-February/005128.html.
 In this Debian bug 680469 is a link from Rob van der Hoeven to a Debian Wheezy template he made by modifying the Debian Squeeze template. This template actually works in Wheezy, unlike the debconf template which is packaged in Wheezy's lxc (0.8.0~rc1-8+deb7u1). 
 Unfortunately Debian lxc's package maintainer (Daniel Baumann) said the didn't want to support this working template (even though it barely differs from the upstream template) and then nothing happenend.
-So now we have a non working Debian template in Debian's own stable lxc package. How it has gotten to this point is beyond me...
+So now we have a non working Debian template in Debian's own stable lxc package.
 
 # What
 Anyway, I decided to try to get the template Rob created as close to upstream as possible so there is a working template anyone can use and which might have a chance of being added to a stable update.
