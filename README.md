@@ -25,8 +25,10 @@ I first compared Rob's template with the template from Debian lxc 0.7.5-5. See d
 * Removed daemontools-run entry
 * Added reporting of hostname to dhcp server
 * Different way to set locale (same as upstream) (this uses locale-gen $LANG, which doesn't work on Wheezy (anymore?))
-* Different pointless services to disable
- * Doesn't remove checkroot, umountroot, module-init-tools
+* Disables less pointless services
+ * checkroot: should be removed, was add in [0.7.3-1](https://launchpad.net/debian/wheezy/+source/lxc/0.7.3-1) as a fix for [Debian bug 601001](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601001) and upstreamed in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1)
+ * umountroot: should be removed, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972).
+ * module-init-tools
 * Changed random password for root for "root"
 * Replacing the deprecated dhcp3-client package with isc-dhcp-client (same as upstream)
 * Change arch-determination to simpler if structure without using dpkg or udpkg
