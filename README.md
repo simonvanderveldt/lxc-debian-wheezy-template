@@ -12,23 +12,23 @@ So now we have a non working Debian template in Debian's own stable lxc package.
 Anyway, I decided to try to get the template Rob created as close to upstream as possible so there is a working template anyone can use and which might have a chance of being added to a stable update.
 
 Starting points were Rob's template, the last template from Debian's lxc package before the switch to the debconf template and the template from upstream.
-* Rob's template can be found here http://freedomboxblog.nl/wp-content/uploads/lxc-debian-wheezy.gz, it's called lxc-debian-wheezy-robvdhoeven in this folder
-* The last debian version with regular debian template instead of the debconf template is 0.7.5-5, the source of which is still available here https://launchpad.net/debian/sid/+source/lxc/0.7.5-5, it's called lxc-debian-0.7.5-5-debian in this folder
- * See changelog from 0.7.5-6 mentioning replacement of upstream debian template with debconf template https://launchpad.net/debian/sid/+source/lxc/0.7.5-6
-* Upstream template from lxc 0.9.0 can be found here http://lxc.sourceforge.net/download/lxc/lxc-0.9.0.tar.gz, it's called lxc-debian-0.9.0-upstream in this folder
+* Rob's template can be found here http://freedomboxblog.nl/wp-content/uploads/lxc-debian-wheezy.gz. The file is called lxc-debian-wheezy-robvdhoeven in this folder
+* The last debian version with the regular debian template instead of the debconf template is 0.7.5-5, the source of which is still available here https://launchpad.net/debian/sid/+source/lxc/0.7.5-5. The file template file is called lxc-debian-0.7.5-5-debian in this folder
+ * See changelog from [0.7.5-6](https://launchpad.net/debian/sid/+source/lxc/0.7.5-6) mentioning replacement of upstream debian template with debconf template 
+* The upstream template from lxc 0.9.0 can be found here http://lxc.sourceforge.net/download/lxc/lxc-0.9.0.tar.gz. The file is called lxc-debian-0.9.0-upstream in this folder
 
 ## Changes between Rob's template and Debian lxc 0.7.5-5's template
-I first compared Rob's template with the template from Debian lxc 0.7.5-5. See debian-0.7.5-5_rob.diff for the diff. The differences between these are:
-* Removed $SUITE (squeeze) and replaced it with harcoded wheezy
-* Removed $MIRROR and replaced it with http://ftp.debian.org/debian
-* Set default runlevel to 3
-* Removed daemontools-run entry
-* Added reporting of hostname to dhcp server
-* Different way to set locale (same as upstream) (this uses locale-gen $LANG, which doesn't work on Wheezy (anymore?))
+I first compared Rob's template with the template from Debian lxc 0.7.5-5. See debian-0.7.5-5_rob.diff for the diff. Below is a list of the differences, info about them and if the change should be kept or reversed.
+* Removed $SUITE (squeeze) and replaced it with harcoded wheezy. KEEP hardcoded wheezy for now
+* Removed $MIRROR and replaced it with http://ftp.debian.org/debian. RE-ADD mirror without variable, should probably use http.debian.net, see http://wiki.debian.org/DebianGeoMirror
+* Set default runlevel to 3, was added to [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4), but somehow not included in the releases after that. Also included in upstream. KEEP runlevel 3
+* Removed adding of daemontools-run inittab entry, was added in [0.7.5-4](https://launchpad.net/debian/sid/+source/lxc/0.7.5-4), not in upstream, I see no direct need to re-add it. KEEP removed
+* Added reporting of hostname to dhcp server. I so no direct need for this for everybody. REMOVE
+* Different way to set locale (same as upstream), this uses locale-gen $LANG, which doesn't work on Wheezy (anymore?). FIX needed
 * Disables less pointless services
- * checkroot: should be removed, was add in [0.7.3-1](https://launchpad.net/debian/wheezy/+source/lxc/0.7.3-1) as a fix for [Debian bug 601001](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601001) and upstreamed in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1)
- * umountroot: should be removed, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972).
- * module-init-tools
+ * checkroot, was added in [0.7.3-1](https://launchpad.net/debian/wheezy/+source/lxc/0.7.3-1) as a fix for [Debian bug 601001](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601001) and upstreamed in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1). RE-ADD disable checkroot
+ * umountroot, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972). RE-ADD disable umountroot
+ * module-init-tools, was added in [0.7.4.2-1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-1). RE-ADD disable module-init-tools
 * Changed random password for root to "root"
 * Replacing the deprecated dhcp3-client package with isc-dhcp-client (same as upstream)
 * Change arch-determination to simpler if structure without using dpkg or udpkg
