@@ -1,6 +1,20 @@
 LXC template lxc-debian-wheezy-template
 =======================================
 
+# How
+Download the file `lxc-debian-wheezy-robvdhoeven`
+```
+sudo cp lxc-debian-wheezy-robvdhoeven /usr/share/lxc/templates/lxc-debian-wheezy
+sudo chmod +x /usr/share/lxc/templates/lxc-debian-wheezy
+name=container-name
+sudo lxc-create -n $name -t debian-wheezy
+```
+Put the name you want for your container in place of `container-name`.
+root password is root. More information at https://wiki.debian.org/LXC
+
+The network is configured for DHCP. You can change it at `/var/lib/lxc/$name/rootfs/etc/network/interfaces`.
+See https://wiki.debian.org/LXC/SimpleBridge
+
 # Why
 Since the lxc template for Debian in Debian Wheezy is broken (because it relies on live-debconfig which isn't available in Wheezy) I started looking for a solution.
 
