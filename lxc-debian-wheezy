@@ -56,15 +56,6 @@ c3:12345:respawn:/sbin/getty 38400 tty3 linux
 c4:12345:respawn:/sbin/getty 38400 tty4 linux
 EOF
 
-    # add daemontools-run entry
-    if [ -e $rootfs/var/lib/dpkg/info/daemontools.list ]; then
-        cat <<EOF >> $rootfs/etc/inittab
-#-- daemontools-run begin
-SV:123456:respawn:/usr/bin/svscanboot
-#-- daemontools-run end
-EOF
-    fi
-
     # disable selinux in debian
     mkdir -p $rootfs/selinux
     echo 0 > $rootfs/selinux/enforce
