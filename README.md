@@ -47,7 +47,7 @@ As said, starting points were Rob's template, the last template from Debian's LX
 ### Changes between Rob's template and Debian LXC 0.7.5-5's template
 Below follows a list of the changes in Rob's template compared to the template from Debian's LXC 0.7.5-5 package with some info on the changes and if the changes should be kept or not.
 
-* Removed $SUITE (squeeze) and replaced it with harcoded wheezy. RE-ADD $SUITE. It makes the code clearer and makes it possible to create containers for other releases than wheezy
+* ~~Removed $SUITE (squeeze) and replaced it with harcoded wheezy. RE-ADD $SUITE. It makes the code clearer and makes it possible to create containers for other releases than wheezy~~
 * Removed $MIRROR and replaced it with http://ftp.debian.org/debian. RE-ADD mirror without variable, should probably use http.debian.net, see the [Debian GeoMirror page on the Debian wiki](http://wiki.debian.org/DebianGeoMirror)
 * Set default runlevel to 3, was added to [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4), but somehow not included in the releases after that. Also included in upstream. [Default in Debian is 2](https://wiki.debian.org/RunLevel) KEEP runlevel 3
 * Removed adding of daemontools-run inittab entry, was added in [0.7.5-4](https://launchpad.net/debian/sid/+source/lxc/0.7.5-4), not in upstream, I see no direct need to re-add it. KEEP removed
@@ -58,7 +58,7 @@ Below follows a list of the changes in Rob's template compared to the template f
  * umountroot, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972). RE-ADD disable umountroot
  * module-init-tools, was added in [0.7.4.2-1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-1). RE-ADD disable module-init-tools
 * Changed random password for root to "root". Easier to remember than random password and there is a message notifying the user of this standard password, KEEP
-* Replacing deprecated dhcp3-client package with isc-dhcp-client (same as upstream). KEEP
+* ~~Replacing deprecated dhcp3-client package with isc-dhcp-client (same as upstream). KEEP~~
 * Change arch-determination to simpler if structure without using dpkg or udpkg. Seems to work and is simpler, so KEEP
 * Added support for arch=armv5tel (results in arch=armel). Does no harm as far as I can see, so KEEP
 * Changed container configuration
@@ -74,4 +74,4 @@ Below follows a list of the changes in Rob's template compared to the template f
     * Removed lxc.network.veth.pair = veth-$name. Isn't necessary, so KEEP removed.
     * Added lxc.network.ipv4 = 0.0.0.0/24. Makes it possible to use DHCP with the random-generated MAC address. KEEP
     * Replaced hard-coded mac address with random generated mac-address using new hex() function. KEEP
-* Added missing $name to copy_configuration() function call (same as upstream). KEEP
+* ~~Added missing $name to copy_configuration() function call (same as upstream). KEEP~~

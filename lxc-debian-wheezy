@@ -20,7 +20,7 @@
 # License along with this library; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
 
-SUITE=${SUITE:-squeeze}
+SUITE=${SUITE:-wheezy}
 MIRROR=${MIRROR:-http://cdn.debian.net/debian}
 
 configure_debian()
@@ -130,7 +130,7 @@ ifupdown,\
 locales,\
 libui-dialog-perl,\
 dialog,\
-dhcp3-client,\
+isc-dhcp-client,\
 netbase,\
 net-tools,\
 iproute,\
@@ -286,7 +286,7 @@ EOF
 ## Network
 lxc.network.type                        = veth
 lxc.network.flags                       = up
-lxc.network.hwaddr                      = 11:22:33:44:55:66
+lxc.network.hwaddr                      = 02:00:33:44:55:66
 lxc.network.link                        = br0
 lxc.network.mtu                         = 1500
 lxc.network.name                        = eth0
@@ -386,7 +386,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-copy_configuration $path $rootfs
+copy_configuration $path $rootfs $name
 if [ $? -ne 0 ]; then
     echo "failed write configuration file"
     exit 1
