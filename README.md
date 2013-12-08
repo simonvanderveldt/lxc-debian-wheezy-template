@@ -54,8 +54,8 @@ Below follows a list of the changes in Rob's template compared to the template f
 * ~~Removed adding of daemontools-run inittab entry, was added in [0.7.5-4](https://launchpad.net/debian/sid/+source/lxc/0.7.5-4), not in upstream, I see no direct need for this. REMOVE adding daemontools to inittab~~
 * ~~Add reporting of hostname to dhcp server. Most people won't need this. DON'T ADD~~
 * ~~Different way to set locale (same as upstream). This uses locale-gen $LANG, which doesn't work on Wheezy (anymore?). KEEP to stay as close as possible to Debian's template.~~
-  * Maybe use upstream's way later. Is it better? It doesn't work at the moment so at the very least is would need to be fixed.
-* Disables less pointless services
+  * Maybe use upstream's way later. Is it better? It doesn't work at the moment so at the very least it would need to be fixed.
+* ~~Disables less pointless services~~
   * ~~checkroot, was added in [0.7.3-1](https://launchpad.net/debian/wheezy/+source/lxc/0.7.3-1) as a fix for [Debian bug 601001](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601001) and upstreamed in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1). KEEP disable checkroot~~
   * ~~umountroot, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972). KEEP disable umountroot~~
   * ~~module-init-tools, was added in [0.7.4.2-1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-1). Module-inits-tools isn't installed anymore by default, so this isn't necessary anymore. REMOVE disable module-init-tools~~
