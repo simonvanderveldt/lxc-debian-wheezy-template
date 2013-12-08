@@ -45,34 +45,34 @@ As said, starting points were Rob's template, the last template from Debian's LX
 
 
 ### Changes between Rob's template and Debian LXC 0.7.5-5's template
-Below follows a list of the changes in Rob's template compared to the template from Debian's LXC 0.7.5-5 package with some info on the changes and if the changes should be kept or not.
+Below follows a list of the changes in Rob's template compared to the template from Debian's LXC 0.7.5-5 package (called Debian's template from here on) with some info on the changes and if the changes should be added/applied to Debian's template or not.
 
-* ~~Removed $SUITE (squeeze) and replaced it with harcoded wheezy. RE-ADD $SUITE. It makes the code clearer and makes it possible to create containers for other releases than wheezy~~
-* ~~Removed `$MIRROR` and replaced it with `http://ftp.debian.org/debian`. RE-ADD `$MIRROR`. It makes the code clearer and it makes it clearer where to change the mirror if someone wants to.~~
-  * For the mirror keep `cdn.debian.net` as in Debian's LXC 0.7.5-5 package. In the future we can switch to using `http.debian.net`, see the [Debian GeoMirror page on the Debian wiki](http://wiki.debian.org/DebianGeoMirror) for more info.
-* ~~Set default runlevel to 3, was added to [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4), but somehow not included in the releases after that. Also included in upstream. The [default in Debian is 2](https://wiki.debian.org/RunLevel) REMOVE runlevel 3, set it to 2~~
-* ~~Removed adding of daemontools-run inittab entry, was added in [0.7.5-4](https://launchpad.net/debian/sid/+source/lxc/0.7.5-4), not in upstream, I see no direct need to re-add it. KEEP removed~~
-* Added reporting of hostname to dhcp server. I see no direct need for this for everybody. REMOVE
-* Different way to set locale (same as upstream), this uses locale-gen $LANG, which doesn't work on Wheezy (anymore?). FIX needed
+* ~~Removed `$SUITE`, replaced with harcoded `wheezy`. KEEP `$SUITE`. It makes the code clearer and makes it possible to create containers for other releases than wheezy~~
+* ~~Removed `$MIRROR`, replaced with hardcoded `http://ftp.debian.org/debian`. KEEP `$MIRROR`. It makes the code clearer and it makes it clearer where to change the mirror if someone wants to.~~
+  * For the mirror keep `cdn.debian.net` as in Debian's template. In the future we can switch to using `http.debian.net`, see the [Debian GeoMirror page on the Debian wiki](http://wiki.debian.org/DebianGeoMirror) for more info.
+* ~~Set default runlevel to 3, was added to [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4), but not included in the releases after that. Also included in upstream. The [default in Debian is 2](https://wiki.debian.org/RunLevel) KEEP runlevel 2~~
+* ~~Removed adding of daemontools-run inittab entry, was added in [0.7.5-4](https://launchpad.net/debian/sid/+source/lxc/0.7.5-4), not in upstream, I see no direct need for this. REMOVE adding daemontools to inittab~~
+* Add reporting of hostname to dhcp server. Most people won't need this. DON'T ADD
+* Different way to set locale (same as upstream), this uses locale-gen $LANG, which doesn't work on Wheezy (anymore?). Either KEEP what's in Debian's template or FIX needed
 * Disables less pointless services
- * checkroot, was added in [0.7.3-1](https://launchpad.net/debian/wheezy/+source/lxc/0.7.3-1) as a fix for [Debian bug 601001](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601001) and upstreamed in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1). RE-ADD disable checkroot
- * umountroot, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972). RE-ADD disable umountroot
- * module-init-tools, was added in [0.7.4.2-1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-1). RE-ADD disable module-init-tools
-* Changed random password for root to "root". Easier to remember than random password and there is a message notifying the user of this standard password, KEEP
-* ~~Replacing deprecated dhcp3-client package with isc-dhcp-client (same as upstream). KEEP~~
-* Change arch-determination to simpler if structure without using dpkg or udpkg. Seems to work and is simpler, so KEEP
-* Added support for arch=armv5tel (results in arch=armel). Does no harm as far as I can see, so KEEP
+ * checkroot, was added in [0.7.3-1](https://launchpad.net/debian/wheezy/+source/lxc/0.7.3-1) as a fix for [Debian bug 601001](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601001) and upstreamed in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1). KEEP disable checkroot
+ * umountroot, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972). KEEP disable umountroot
+ * module-init-tools, was added in [0.7.4.2-1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-1). KEEP disable module-init-tools
+* Changed random password for root to "root". Easier to remember than random password and there is a message notifying the user that this default password should be changed. KEEP random password for now to stay as close as possible to Debian's template.
+* ~~Replaced deprecated `dhcp3-client` package with `isc-dhcp-client` (same as upstream). ADD `isc-dhcp-client` instead of `dhcp3-client`~~
+* Changed arch-determination to simpler if structure without using dpkg or udpkg. KEEP structure as is to stay as close as possible to Debian's template. Maybe switch later because it seems to work fine and is simpler.
+* Added support for arch=armv5tel (results in arch=armel). DON'T ADD to stay as close as possible to Debian's template. Maybe add later because it seems to work fine.
 * Changed container configuration
-  * Restructured it (all networking setting together) KEEP
-  * Removed #lxc.console = /var/log/lxc/$name.console (was already commented out). KEEP removed
-  * Removed lxc.cap.drop = sys_admin. Drops CAP_SYS_ADMIN capabilities. As far as I could find out it's fine to remove this, so KEEP removed
-  * Removed #lxc.cgroup.devices.allow = a (was already commented out). KEEP removed
-  * Removed limits. Limits aren't in upstream either, so KEEP removed
-  * Removed lxc.mount.entry for shared folder. Should be in config file, so KEEP removed
+  * Restructured it (put `utsname` under network settings). DON'T ADD to stay as close as possible to Debian's template.
+  * Removed #lxc.console = /var/log/lxc/$name.console (was already commented out). KEEP to stay as close as possible to Debian's template.
+  * Removed lxc.cap.drop = sys_admin. Drops CAP_SYS_ADMIN capabilities. KEEP to stay as close as possible to Debian's template (and upstream).
+  * Removed #lxc.cgroup.devices.allow = a (was already commented out). KEEP to stay as close as possible to Debian's template.
+  * Removed limits (were already commented out). KEEP to stay as close as possible to Debian's template. Maybe remove later, they aren't in upstream.
+  * Removed lxc.mount.entry for shared folder. REMOVE, should be in config file
   * Changed network settings
-    * Removed lxc.network.mtu = 1500. Isn't necessary, so KEEP removed
-    * Removed lxc.network.name = eth0. Isn't necessary, so KEEP removed
-    * Removed lxc.network.veth.pair = veth-$name. Isn't necessary, so KEEP removed.
-    * Added lxc.network.ipv4 = 0.0.0.0/24. Makes it possible to use DHCP with the random-generated MAC address. KEEP
-    * Replaced hard-coded mac address with random generated mac-address using new hex() function. KEEP
+    * Removed lxc.network.mtu = 1500. Isn't necessary. REMOVE
+    * Removed lxc.network.name = eth0. Isn't necessary, does make sure the default network interface is always called eth0. KEEP
+    * Removed lxc.network.veth.pair = veth-$name. Isn't necessary. REMOVE
+    * Added lxc.network.ipv4 = 0.0.0.0/24. Since we're using DHCP we don't need this, see the [LXC SimpleBridge page on the Debian wiki](https://wiki.debian.org/LXC/SimpleBridge). DON'T ADD
+    * Replaced hard-coded mac address with random generated mac-address using new hex() function. Very usefull to make the template create a new mac-address for each new container without using a configuration file. ADD
 * ~~Added missing $name to copy_configuration() function call (same as upstream). KEEP~~
