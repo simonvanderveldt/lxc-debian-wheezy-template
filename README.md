@@ -52,27 +52,31 @@ Below follows a list of the changes in Rob's template compared to the template f
   * For the mirror keep `cdn.debian.net` as in Debian's template. In the future we can switch to using `http.debian.net`, see the [Debian GeoMirror page on the Debian wiki](http://wiki.debian.org/DebianGeoMirror) for more info.
 * ~~Set default runlevel to 3, was added to [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4), but not included in the releases after that. Also included in upstream. The [default in Debian is 2](https://wiki.debian.org/RunLevel) KEEP runlevel 2~~
 * ~~Removed adding of daemontools-run inittab entry, was added in [0.7.5-4](https://launchpad.net/debian/sid/+source/lxc/0.7.5-4), not in upstream, I see no direct need for this. REMOVE adding daemontools to inittab~~
-* Add reporting of hostname to dhcp server. Most people won't need this. DON'T ADD
-* Different way to set locale (same as upstream), this uses locale-gen $LANG, which doesn't work on Wheezy (anymore?). Either KEEP what's in Debian's template or FIX needed
+* ~~Add reporting of hostname to dhcp server. Most people won't need this. DON'T ADD~~
+* ~~Different way to set locale (same as upstream). This uses locale-gen $LANG, which doesn't work on Wheezy (anymore?). KEEP to stay as close as possible to Debian's template.~~
+  * Maybe use upstream's way later. Is it better? It doesn't work at the moment so at the very least is would need to be fixed.
 * Disables less pointless services
- * checkroot, was added in [0.7.3-1](https://launchpad.net/debian/wheezy/+source/lxc/0.7.3-1) as a fix for [Debian bug 601001](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601001) and upstreamed in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1). KEEP disable checkroot
- * umountroot, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972). KEEP disable umountroot
- * module-init-tools, was added in [0.7.4.2-1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-1). KEEP disable module-init-tools
-* Changed random password for root to "root". Easier to remember than random password and there is a message notifying the user that this default password should be changed. KEEP random password for now to stay as close as possible to Debian's template.
+  * ~~checkroot, was added in [0.7.3-1](https://launchpad.net/debian/wheezy/+source/lxc/0.7.3-1) as a fix for [Debian bug 601001](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601001) and upstreamed in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1). KEEP disable checkroot~~
+  * ~~umountroot, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972). KEEP disable umountroot~~
+  * module-init-tools, was added in [0.7.4.2-1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-1). Module-inits-tools isn't installed anymore by default, so this isn't necessary anymore. REMOVE disable module-init-tools
+* ~~Changed random password for root to "root". Easier to remember than random password and there is a message notifying the user that this default password should be changed. KEEP random password for now to stay as close as possible to Debian's template.~~
 * ~~Replaced deprecated `dhcp3-client` package with `isc-dhcp-client` (same as upstream). ADD `isc-dhcp-client` instead of `dhcp3-client`~~
-* Changed arch-determination to simpler if structure without using dpkg or udpkg. KEEP structure as is to stay as close as possible to Debian's template. Maybe switch later because it seems to work fine and is simpler.
-* Added support for arch=armv5tel (results in arch=armel). DON'T ADD to stay as close as possible to Debian's template. Maybe add later because it seems to work fine.
+* ~~Changed arch-determination to simpler `if` structure without using dpkg or udpkg. KEEP structure as is to stay as close as possible to Debian's template.~~
+  * Maybe switch later because it seems to work fine and is simpler.
+* ~~Added support for `arch=armv5tel` (results in arch=armel). DON'T ADD to stay as close as possible to Debian's template.~~
+  * Maybe add later because it seems to work fine.
 * Changed container configuration
-  * Restructured it (put `utsname` under network settings). DON'T ADD to stay as close as possible to Debian's template.
-  * Removed #lxc.console = /var/log/lxc/$name.console (was already commented out). KEEP to stay as close as possible to Debian's template.
-  * Removed lxc.cap.drop = sys_admin. Drops CAP_SYS_ADMIN capabilities. KEEP to stay as close as possible to Debian's template (and upstream).
-  * Removed #lxc.cgroup.devices.allow = a (was already commented out). KEEP to stay as close as possible to Debian's template.
-  * Removed limits (were already commented out). KEEP to stay as close as possible to Debian's template. Maybe remove later, they aren't in upstream.
-  * Removed lxc.mount.entry for shared folder. REMOVE, should be in config file
+  * ~~Restructured it (put `utsname` under network settings). DON'T ADD to stay as close as possible to Debian's template.~~
+  * ~~Removed `#lxc.console = /var/log/lxc/$name.console` (was already commented out). KEEP to stay as close as possible to Debian's template.~~
+  * ~~Removed `lxc.cap.drop = sys_admin`. Drops CAP_SYS_ADMIN capabilities. KEEP to stay as close as possible to Debian's template (and upstream).~~
+  * ~~Removed `#lxc.cgroup.devices.allow = a` (was already commented out). KEEP to stay as close as possible to Debian's template.~~
+  * ~~Removed limits (were already commented out). KEEP to stay as close as possible to Debian's template.~~
+    * Maybe remove later, limits aren't in upstream.
+  * Removed `lxc.mount.entry` for shared folder. REMOVE, should be in config file
   * Changed network settings
-    * Removed lxc.network.mtu = 1500. Isn't necessary. REMOVE
-    * Removed lxc.network.name = eth0. Isn't necessary, does make sure the default network interface is always called eth0. KEEP
-    * Removed lxc.network.veth.pair = veth-$name. Isn't necessary. REMOVE
-    * Added lxc.network.ipv4 = 0.0.0.0/24. Since we're using DHCP we don't need this, see the [LXC SimpleBridge page on the Debian wiki](https://wiki.debian.org/LXC/SimpleBridge). DON'T ADD
-    * Replaced hard-coded mac address with random generated mac-address using new hex() function. Very usefull to make the template create a new mac-address for each new container without using a configuration file. ADD
+    * Removed `lxc.network.mtu = 1500`. Isn't necessary. REMOVE
+    * ~~Removed `lxc.network.name = eth0`. Isn't stricly necessary, but does make sure the default network interface is always called eth0. KEEP~~
+    * Removed `lxc.network.veth.pair = veth-$name`. Isn't necessary. REMOVE
+    * ~~Added `lxc.network.ipv4 = 0.0.0.0/24`. Since we're using DHCP we don't need this, see the [LXC SimpleBridge page on the Debian wiki](https://wiki.debian.org/LXC/SimpleBridge). DON'T ADD~~
+    * Replaced hard-coded mac address with random generated mac-address using new hex() function. Very useful to make the template create a new mac-address for each new container without using a configuration file. ADD
 * ~~Added missing $name to copy_configuration() function call (same as upstream). KEEP~~
