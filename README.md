@@ -58,7 +58,7 @@ Below follows a list of the changes in Rob's template compared to the template f
 * Disables less pointless services
   * ~~checkroot, was added in [0.7.3-1](https://launchpad.net/debian/wheezy/+source/lxc/0.7.3-1) as a fix for [Debian bug 601001](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=601001) and upstreamed in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1). KEEP disable checkroot~~
   * ~~umountroot, was added in [0.7.4.2-0.1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-0.1) and re-added in [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4) as a fix for [Debian bug 611972](http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=611972). KEEP disable umountroot~~
-  * module-init-tools, was added in [0.7.4.2-1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-1). Module-inits-tools isn't installed anymore by default, so this isn't necessary anymore. REMOVE disable module-init-tools
+  * ~~module-init-tools, was added in [0.7.4.2-1](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-1). Module-inits-tools isn't installed anymore by default, so this isn't necessary anymore. REMOVE disable module-init-tools~~
 * ~~Changed random password for root to "root". Easier to remember than random password and there is a message notifying the user that this default password should be changed. KEEP random password for now to stay as close as possible to Debian's template.~~
 * ~~Replaced deprecated `dhcp3-client` package with `isc-dhcp-client` (same as upstream). ADD `isc-dhcp-client` instead of `dhcp3-client`~~
 * ~~Changed arch-determination to simpler `if` structure without using dpkg or udpkg. KEEP structure as is to stay as close as possible to Debian's template.~~

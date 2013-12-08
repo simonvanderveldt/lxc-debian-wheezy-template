@@ -103,9 +103,6 @@ EOF
     chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d -f hwclockfirst.sh remove" # S
     chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d hwclockfirst start 08 3 ."
 
-    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d -f module-init-tools remove" # S
-    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d module-init-tools start 10 3 ."
-
     password="$(dd if=/dev/urandom bs=6 count=1 2> /dev/null | base64)"
 
     echo "root:$password" | chroot $rootfs chpasswd
