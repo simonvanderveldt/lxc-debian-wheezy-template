@@ -72,7 +72,7 @@ Below follows a list of the changes in Rob's template compared to the template f
   * ~~Removed `#lxc.cgroup.devices.allow = a` (was already commented out). KEEP to stay as close as possible to Debian's template.~~
   * ~~Removed limits (were already commented out). KEEP to stay as close as possible to Debian's template.~~
     * Maybe remove later, limits aren't in upstream.
-  * Removed `lxc.mount.entry` for shared folder. REMOVE, should be in config file
+  * ~~Removed `lxc.mount.entry` for shared folder. REMOVE, should be in config file~~
   * Changed network settings
     * Removed `lxc.network.mtu = 1500`. Isn't necessary. REMOVE
     * ~~Removed `lxc.network.name = eth0`. Isn't stricly necessary, but does make sure the default network interface is always called eth0. KEEP~~

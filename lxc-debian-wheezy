@@ -258,18 +258,6 @@ lxc.cgroup.devices.allow                = c 254:0 rwm
 ## Filesystem
 lxc.mount.entry                         = proc $rootfs/proc proc nodev,noexec,nosuid 0 0
 lxc.mount.entry                         = sysfs $rootfs/sys sysfs defaults,ro 0 0
-EOF
-
-    # Adding shared data directory if existing
-    if [ -d /srv/share/$hostname ]; then
-	echo "lxc.mount.entry                         = /srv/share/$hostname $rootfs/srv/$hostname none defaults,bind 0 0" >> $path/config
-    else
-	echo "#lxc.mount.entry                        = /srv/share/$hostname $rootfs/srv/$hostname none defaults,bind 0 0" >> $path/config
-    fi
-
-    cat >> $path/config << EOF
-
-#lxc.mount.entry                        = /srv/$name $rootfs/srv/$name none defaults,bind 0 0
 
 ## Network
 lxc.network.type                        = veth
