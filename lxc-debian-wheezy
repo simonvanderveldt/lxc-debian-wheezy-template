@@ -94,26 +94,26 @@ EOF
     chroot $rootfs sh -c "LANG=C dpkg-reconfigure locales -f noninteractive"
 
     # remove pointless services in a container
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d -f checkroot.sh remove" # S
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d checkroot.sh stop 09 S ."
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d -f checkroot.sh remove" # S
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d checkroot.sh stop 09 S ."
 
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d -f umountfs remove" # 0 6
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d umountfs start 09 0 6 ."
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d -f umountfs remove" # 0 6
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d umountfs start 09 0 6 ."
 
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d -f umountroot remove" # 0 6
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d umountroot start 10 0 6 ."
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d -f umountroot remove" # 0 6
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d umountroot start 10 0 6 ."
 
     # The following initscripts don't provide an empty start or stop block.
     # To prevent them being enabled on upgrades, we leave a start link on
     # runlevel 3.
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d -f hwclock.sh remove" # S 0 6
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d hwclock.sh start 10 3 ."
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d -f hwclock.sh remove" # S 0 6
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d hwclock.sh start 10 3 ."
 
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d -f hwclockfirst.sh remove" # S
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d hwclockfirst start 08 3 ."
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d -f hwclockfirst.sh remove" # S
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d hwclockfirst start 08 3 ."
 
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d -f module-init-tools remove" # S
-    chroot $rootfs "LANG=C /usr/sbin/update-rc.d module-init-tools start 10 3 ."
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d -f module-init-tools remove" # S
+    chroot $rootfs sh -c "LANG=C /usr/sbin/update-rc.d module-init-tools start 10 3 ."
 
     password="$(dd if=/dev/urandom bs=6 count=1 2> /dev/null | base64)"
 
