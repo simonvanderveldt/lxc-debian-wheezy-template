@@ -262,11 +262,9 @@ lxc.mount.entry                         = sysfs $rootfs/sys sysfs defaults,ro 0 
 ## Network
 lxc.network.type                        = veth
 lxc.network.flags                       = up
-lxc.network.hwaddr                      = 02:00:33:44:55:66
+lxc.network.hwaddr                      = 02:00:$(hex):$(hex):$(hex):$(hex)
 lxc.network.link                        = br0
-lxc.network.mtu                         = 1500
 lxc.network.name                        = eth0
-lxc.network.veth.pair                   = veth-$name
 EOF
 
     if [ $? -ne 0 ]; then
@@ -275,6 +273,12 @@ EOF
     fi
 
     return 0
+}
+
+# Nice trick from: http://mindref.blogspot.com/2011/01/debian-lxc-create.html
+hex() 
+{
+    echo "`tr -dc A-F0-9 < /dev/urandom | head -c 2 | xargs`"
 }
 
 clean()

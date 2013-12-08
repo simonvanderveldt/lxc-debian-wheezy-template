@@ -73,10 +73,10 @@ Below follows a list of the changes in Rob's template compared to the template f
   * ~~Removed limits (were already commented out). KEEP to stay as close as possible to Debian's template.~~
     * Maybe remove later, limits aren't in upstream.
   * ~~Removed `lxc.mount.entry` for shared folder. REMOVE, should be in config file~~
-  * Changed network settings
-    * Removed `lxc.network.mtu = 1500`. Isn't necessary. REMOVE
+  * ~~Changed network settings~~
+    * ~~Removed `lxc.network.mtu = 1500`. Isn't necessary. REMOVE~~
     * ~~Removed `lxc.network.name = eth0`. Isn't stricly necessary, but does make sure the default network interface is always called eth0. KEEP~~
-    * Removed `lxc.network.veth.pair = veth-$name`. Isn't necessary. REMOVE
+    * ~~Removed `lxc.network.veth.pair = veth-$name`. Isn't necessary. REMOVE~~
     * ~~Added `lxc.network.ipv4 = 0.0.0.0/24`. Since we're using DHCP we don't need this, see the [LXC SimpleBridge page on the Debian wiki](https://wiki.debian.org/LXC/SimpleBridge). DON'T ADD~~
-    * Replaced hard-coded mac address with random generated mac-address using new hex() function. Very useful to make the template create a new mac-address for each new container without using a configuration file. ADD
+    * ~~Replaced hard-coded mac address with random generated mac-address using new hex() function. Very useful to make the template create a new mac-address for each new container without using a configuration file. ADD~~
 * ~~Added missing $name to copy_configuration() function call (same as upstream). KEEP~~
