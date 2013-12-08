@@ -48,7 +48,8 @@ As said, starting points were Rob's template, the last template from Debian's LX
 Below follows a list of the changes in Rob's template compared to the template from Debian's LXC 0.7.5-5 package with some info on the changes and if the changes should be kept or not.
 
 * ~~Removed $SUITE (squeeze) and replaced it with harcoded wheezy. RE-ADD $SUITE. It makes the code clearer and makes it possible to create containers for other releases than wheezy~~
-* Removed $MIRROR and replaced it with http://ftp.debian.org/debian. RE-ADD mirror without variable, should probably use http.debian.net, see the [Debian GeoMirror page on the Debian wiki](http://wiki.debian.org/DebianGeoMirror)
+* ~~Removed `$MIRROR` and replaced it with `http://ftp.debian.org/debian`. RE-ADD `$MIRROR`. It makes the code clearer and it makes it clearer where to change the mirror if someone wants to.~~
+  * For the mirror keep `cdn.debian.net` as in Debian's LXC 0.7.5-5 package. In the future we can switch to using `http.debian.net`, see the [Debian GeoMirror page on the Debian wiki](http://wiki.debian.org/DebianGeoMirror) for more info.
 * Set default runlevel to 3, was added to [0.7.4.2-4](https://launchpad.net/debian/sid/+source/lxc/0.7.4.2-4), but somehow not included in the releases after that. Also included in upstream. [Default in Debian is 2](https://wiki.debian.org/RunLevel) KEEP runlevel 3
 * Removed adding of daemontools-run inittab entry, was added in [0.7.5-4](https://launchpad.net/debian/sid/+source/lxc/0.7.5-4), not in upstream, I see no direct need to re-add it. KEEP removed
 * Added reporting of hostname to dhcp server. I see no direct need for this for everybody. REMOVE
