@@ -61,6 +61,7 @@ Below follows a list of the changes in Rob's template compared to the template f
 * Replacing deprecated dhcp3-client package with isc-dhcp-client (same as upstream). KEEP
 * Change arch-determination to simpler if structure without using dpkg or udpkg. Seems to work and is simpler, so KEEP
 * Added support for arch=armv5tel (results in arch=armel). Does no harm as far as I can see, so KEEP
+* Added support for arch=armv7l (results in arch=armhf). Same as above.
 * Changed container configuration
   * Restructured it (all networking setting together) KEEP
   * Removed #lxc.console = /var/log/lxc/$name.console (was already commented out). KEEP removed
