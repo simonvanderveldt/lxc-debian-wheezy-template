@@ -178,6 +178,10 @@ install_debian()
 	    arch=armel
 	fi
 
+	if [ "$arch" == "armv7l" ]; then
+	    arch=armhf
+	fi
+
 	echo "Checking cache download in $cache/rootfs-$arch ... "
 	if [ ! -e "$cache/rootfs-$arch" ]; then
 	    download_debian $cache $arch
